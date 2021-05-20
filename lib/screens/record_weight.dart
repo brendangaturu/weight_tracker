@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:weight_tracker/services/database.dart';
 
+
 class RecordWeight extends StatefulWidget {
   final String title;
   final double weightUnit;
-  final bool edit;
-  final String uid;
+  final bool edit; 
+  final String uid; 
 
   const RecordWeight(
       {Key key, this.title, this.weightUnit, this.edit, this.uid})
@@ -66,7 +67,7 @@ class _RecordWeightState extends State<RecordWeight> {
                     width: MediaQuery.of(context).size.height,
                     child: TextButton(
                       onPressed: () async {
-                        // if (_formKey.currentState.validate()) {
+                        if (_formKey.currentState.validate()) {
                         !widget.edit
                             ? await _databaseService
                                 .uploadWeight(
@@ -75,7 +76,7 @@ class _RecordWeightState extends State<RecordWeight> {
                             : await _databaseService
                                 .editWeight(unit: _weight, uid: widget.uid)
                                 .whenComplete(() => Navigator.pop(context));
-                        // }
+                        }
                       },
                       child: Text('Save'),
                       style: TextButton.styleFrom(
